@@ -1,0 +1,402 @@
+---
+title: "Simulate bias and precision of Planned Missing Data Designs + FIML estimation vs complete data vs observed correlations"
+author: "Ian Hussey"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+    code_folding: hide
+    highlight: haddock
+    theme: flatly
+    toc: yes
+    toc_float: yes
+---
+
+```{r include=FALSE}
+
+# formatting options
+# set default chunk options
+knitr::opts_chunk$set(message = FALSE, 
+                      warning = FALSE)
+
+# disable scientific notation
+options(scipen = 999) 
+
+```
+
+# Dependencies
+
+```{r}
+
+# ----- Packages -----
+library(tidyverse)
+library(purrr)
+library(furrr)
+library(lavaan)
+library(mice)
+library(knitr)
+library(kableExtra)
+library(janitor)
+library(beepr)
+
+# set up parallel processing
+plan(multisession, workers = availableCores())
+
+```
+
+# Functions
+
+```{r}
+
+# ----- Helper: build a two-factor population model string -----
+make_pop_model <- function(k = 8, lambda = 0.7, rho = 0.50) {
+  x_items <- paste0("x", seq_len(k))
+  y_items <- paste0("y", seq_len(k))
+  # Factor loadings (fixed to lambda), std.lv=TRUE -> latent vars have var=1
+  glue::glue("
+    F1 =~ {lambda}*{x_items[1]} + {lambda}*{paste(x_items[-1], collapse=' + ')}
+    F2 =~ {lambda}*{y_items[1]} + {lambda}*{paste(y_items[-1], collapse=' + ')}
+    F1 ~~ 1*F1
+    F2 ~~ 1*F2
+    F1 ~~ {rho}*F2
+    # (simulateData with standardized=TRUE will back-calculate residual variances)
+  ")
+}
+
+# ----- Helper: fit the CFA/SEM and extract latent correlation & CI -----
+# fit_and_get_r <- function(dat, k = 8, missing_fiml = FALSE) {
+#   x_items <- paste0("x", seq_len(k))
+#   y_items <- paste0("y", seq_len(k))
+#   
+#   meas_model <- glue::glue("
+#     F1 =~ {paste(x_items, collapse = ' + ')}
+#     F2 =~ {paste(y_items, collapse = ' + ')}
+#   ")
+#   
+#   fit <- lavaan::sem(
+#     model   = meas_model,
+#     data    = dat,
+#     meanstructure = TRUE,
+#     estimator = "ML",
+#     std.lv  = TRUE,            # latent variances fixed to 1 -> cov(F1,F2) = corr(F1,F2)
+#     missing = if (missing_fiml) "fiml" else "listwise",
+#     warn    = FALSE
+#   )
+#   
+#   pe <- parameterEstimates(fit, standardized = FALSE, ci = TRUE) |>
+#     dplyr::filter(lhs == "F1", op == "~~", rhs == "F2") |>
+#     dplyr::select(est = est, se = se, lwr = ci.lower, upr = ci.upper) |>
+#     dplyr::mutate(converged = lavInspect(fit, "converged"))
+#   
+#   # Also return status in case of non-convergence
+#   if (nrow(pe) == 0L) {
+#     tibble(est = NA_real_, se = NA_real_, lwr = NA_real_, upr = NA_real_, converged = FALSE)
+#   } else {
+#     pe
+#   }
+# }
+fit_and_get_r <- function(dat, k = 8, missing_fiml = FALSE) {
+  x_items <- paste0("x", seq_len(k))
+  y_items <- paste0("y", seq_len(k))
+
+  # ---- Latent correlation via SEM ----
+  meas_model <- glue::glue("
+    F1 =~ {paste(x_items, collapse = ' + ')}
+    F2 =~ {paste(y_items, collapse = ' + ')}
+  ")
+
+  fit <- lavaan::sem(
+    model         = meas_model,
+    data          = dat,
+    meanstructure = TRUE,
+    estimator     = "ML",
+    std.lv        = TRUE,  # Var(F1)=Var(F2)=1 -> F1~~F2 equals the latent correlation
+    missing       = if (missing_fiml) "fiml" else "listwise",
+    warn          = FALSE
+  )
+
+  pe_lat <- parameterEstimates(fit, standardized = FALSE, ci = TRUE) |>
+    dplyr::filter(lhs == "F1", op == "~~", rhs == "F2") |>
+    dplyr::transmute(
+      measure   = "latent",
+      est       = est,                 # latent correlation (since std.lv=TRUE)
+      se        = se,
+      lwr       = ci.lower,
+      upr       = ci.upper,
+      converged = lavInspect(fit, "converged")
+    )
+
+  if (nrow(pe_lat) == 0L) {
+    pe_lat <- tibble::tibble(
+      measure = "latent",
+      est = NA_real_, se = NA_real_, lwr = NA_real_, upr = NA_real_,
+      converged = FALSE
+    )
+  }
+
+  # ---- Observed correlation of scale means (pairwise complete) ----
+  # Mean scores with NA tolerance (uses available items per person).
+  x_mean <- rowMeans(dat[, x_items, drop = FALSE], na.rm = TRUE)
+  y_mean <- rowMeans(dat[, y_items, drop = FALSE], na.rm = TRUE)
+
+  cc <- stats::complete.cases(x_mean, y_mean)
+  if (sum(cc) >= 4L) {
+    ct <- stats::cor.test(x_mean[cc], y_mean[cc], method = "pearson")
+    pe_obs <- tibble::tibble(
+      measure   = "observed",
+      est       = unname(ct$estimate[[1]]),
+      se        = 1 / sqrt(sum(cc) - 3),          # Fisher z SE; for reference
+      lwr       = unname(ct$conf.int[1]),
+      upr       = unname(ct$conf.int[2]),
+      converged = TRUE
+    )
+  } else {
+    pe_obs <- tibble::tibble(
+      measure = "observed",
+      est = NA_real_, se = NA_real_, lwr = NA_real_, upr = NA_real_,
+      converged = FALSE
+    )
+  }
+
+  dplyr::bind_rows(pe_lat, pe_obs)
+}
+
+# ----- Helper: impose 50% MCAR within each scale using mice::ampute -----
+ampute_by_scale <- function(df, k = 8, prop = 0.50, seed = NULL,
+                            rule = c("round", "floor", "ceiling")) {
+  stopifnot(is.data.frame(df), k >= 1, prop >= 0, prop <= 1)
+  rule <- match.arg(rule)
+  if (!is.null(seed)) set.seed(seed)
+
+  x_items <- paste0("x", seq_len(k))
+  y_items <- paste0("y", seq_len(k))
+
+  mask_block_exact <- function(mat, prop, rule) {
+    n  <- nrow(mat)
+    k  <- ncol(mat)
+    if (k == 0L || n == 0L) return(mat)
+
+    # exact number of missing items per person in this block
+    m <- switch(rule,
+      round   = as.integer(round(prop * k)),
+      floor   = as.integer(floor(prop * k)),
+      ceiling = as.integer(ceiling(prop * k))
+    )
+    m <- max(0L, min(k, m))  # clamp to [0, k]
+
+    if (m == 0L)  return(mat)
+    if (m == k)   return(matrix(NA_real_, nrow = n, ncol = k, dimnames = dimnames(mat)))
+
+    # build a logical mask with exactly m TRUEs per row
+    miss <- matrix(FALSE, nrow = n, ncol = k)
+    # sample column indices per row without replacement
+    idx_list <- replicate(n, sample.int(k, size = m, replace = FALSE), simplify = FALSE)
+    for (i in seq_len(n)) miss[i, idx_list[[i]]] <- TRUE
+
+    mat[miss] <- NA_real_
+    mat
+  }
+
+  out <- df
+  out[, x_items] <- mask_block_exact(as.matrix(df[, x_items, drop = FALSE]), prop, rule)
+  out[, y_items] <- mask_block_exact(as.matrix(df[, y_items, drop = FALSE]), prop, rule)
+  out
+}
+
+# ----- Single replication -----
+run_one_rep <- function(n = 500, k = 8, lambda = 0.7, rho = 0.50,
+                        miss_prop = 0.50, seed = NULL) {
+  if (!is.null(seed)) set.seed(seed)
+  
+  # (1) simulate population data
+  pop_model <- make_pop_model(k = k, lambda = lambda, rho = rho)
+  df_full <- lavaan::simulateData(model = pop_model,
+                                  sample.nobs = n,
+                                  standardized = TRUE) |>
+    as_tibble()
+  
+  # (2) create missing-at-random (MCAR) dataset: 50% per scale block
+  df_miss <- ampute_by_scale(df_full, k = k, prop = miss_prop)
+  
+  # (3) fit SEMs and extract latent r and 95% CI
+  r_full <- fit_and_get_r(df_full, k = k, missing_fiml = FALSE) |>
+    mutate(dataset = "full")
+  
+  r_miss <- fit_and_get_r(df_miss, k = k, missing_fiml = TRUE) |>
+    mutate(dataset = "missing_FIML")
+  
+  # (4) collate + add truth for later bias/coverage summaries
+  r_full |>
+    bind_rows(r_miss) |>
+    mutate(r_true = rho)
+}
+
+# ----- Multi-run simulation wrapper -----
+# # parallelised - not used as i moved the parallelisation to the grid chunk
+# run_sim <- function(R = 1000, n = 500, k = 8, lambda = 0.7, rho = 0.50,
+#                     miss_prop = 0.50, seed = 123) {
+#   results <- future_map_dfr(
+#     .x = seq_len(R),
+#     .f = ~ run_one_rep(
+#       n = n, k = k, lambda = lambda, rho = rho,
+#       miss_prop = miss_prop
+#     ) |> mutate(rep = .x),
+#     .options = furrr_options(seed = seed)
+#   )
+#   results
+# }
+run_sim <- function(R, n, k, lambda, rho, miss_prop) {
+  purrr::map_dfr(
+    seq_len(R),
+    ~ run_one_rep(n, k, lambda, rho, miss_prop) |> 
+      dplyr::mutate(rep = .x)
+  )
+}
+
+# ----- Summaries: bias, precision, CI width, coverage -----
+summarise_sim <- function(res) {
+  res |>
+    #group_by(dataset, .add = TRUE) |>
+    group_by(dataset, measure, .add = TRUE) |> # also by measure if both latent and observed correlations are assessed
+    summarise(
+      n_iter         = sum(!is.na(est)),
+      converged_prop = mean(converged, na.rm = TRUE),
+      mean_est       = mean(est, na.rm = TRUE),
+      bias           = mean(est - r_true, na.rm = TRUE),
+      rmse           = sqrt(mean((est - r_true)^2, na.rm = TRUE)),
+      sd_est         = sd(est, na.rm = TRUE),
+      mean_se        = mean(se, na.rm = TRUE),
+      mean_ci_width  = mean(upr - lwr, na.rm = TRUE),
+      coverage_95    = mean(lwr <= r_true & upr >= r_true, na.rm = TRUE),
+      # MCSEs
+      mcse_bias      = sd(est - r_true, na.rm = TRUE) / sqrt(n_iter),
+      mcse_cov95     = sqrt(coverage_95 * (1 - coverage_95) / n_iter),
+      .groups = "drop"
+    )
+}
+
+```
+
+# Run on a single set of parameters
+
+```{r}
+
+# # Parameters
+# R       <- 4           # number of replications
+# n       <- 500           # sample size
+# k       <- 8             # items per scale
+# lambda  <- 0.70          # loading for all items (population)
+# rho     <- 0.50          # true latent correlation
+# miss_p  <- 0.50          # 50% MCAR per scale
+# 
+# set.seed(20251007)
+# 
+# sim_res <- run_sim(R = R, n = n, k = k, lambda = lambda, rho = rho, miss_prop = miss_p)
+# 
+# # Per-rep estimates (optional: inspect first rows)
+# head(sim_res)
+
+```
+
+## Summarise
+
+```{r}
+
+# summaries <- summarise_sim(sim_res)
+# 
+# summaries |>
+#   mutate_if(is.numeric, janitor::round_half_up, digits = 2) |>
+#   kable() |>
+#   kable_classic(full_width = FALSE)
+
+```
+
+# Run on a grid of parameters
+
+```{r}
+
+# ----- Parameter grid -----
+param_grid <- expand.grid(
+  n        = c(100, 300, 500),    # sample size
+  k        = c(4, 10, 20),              # items per scale
+  lambda   = c(0.5, 0.7),          # loading
+  rho      = c(0.2, 0.5, 0.8),          # true latent correlation
+  miss_prop= c(0.3, 0.5, 0.7), # missingness proportion
+  R = 1000
+)
+
+# # # for testing
+# param_grid <- expand.grid(
+#   n        = c(500),    # sample size
+#   k        = c(10),              # items per scale
+#   lambda   = c(0.7),          # loading
+#   rho      = c(0.5),          # true latent correlation
+#   miss_prop= c(0.3, 0.5, 0.7), # missingness proportion
+#   R = 5
+# )
+# 
+# # param_grid <- expand.grid(
+# #   n        = c(100),    # sample size
+# #   k        = c(4),              # items per scale
+# #   lambda   = c(0.5),          # loading
+# #   rho      = c(0.2),          # true latent correlation
+# #   miss_prop= c(0.3), # missingness proportion
+# #   R = 3
+# # )
+
+# ----- Run across grid -----
+seed <- 42
+set.seed(seed)
+
+grid_results <- furrr::future_map_dfr(
+  .x = seq_len(nrow(param_grid)),
+  .f = function(i) {
+    pars <- param_grid[i, ]
+    
+    sim <- run_sim(R         = pars$R,
+                   n         = pars$n,
+                   k         = pars$k,
+                   lambda    = pars$lambda,
+                   rho       = pars$rho,
+                   miss_prop = pars$miss_prop)
+    
+    sim |> 
+      mutate(cond_id = i,
+             n = pars$n,
+             k = pars$k,
+             lambda = pars$lambda,
+             rho = pars$rho,
+             miss_prop = pars$miss_prop)
+  },
+  .options = furrr_options(seed = seed)
+)
+beepr::beep(sound = 4)
+
+# write to disk
+dir.create("results")
+write_rds(grid_results, "results/grid_results.rds", compress = "gz")
+
+```
+
+"Warning: lavaan->lav_mvnorm_missing_h1_estimate_moments(): Maximum number of iterations reached when computing the sample moments using EM; use the em.h1.iter.max= argument to increase the number of iterations" -> the impact of this is on fit indices not parameter estimates, so i'm ignoring for the moment.
+
+## Summarise 
+
+```{r}
+
+grid_results <- read_rds("results/grid_results.rds")
+
+summaries_grid <- grid_results |>
+  group_by(cond_id, n, k, lambda, rho, miss_prop) |>
+  summarise_sim()
+
+summaries_grid |>
+  mutate_if(is.numeric, janitor::round_half_up, digits = 2) |>
+  kable() |>
+  kable_classic(full_width = FALSE)
+
+```
+
+
+
+
+
