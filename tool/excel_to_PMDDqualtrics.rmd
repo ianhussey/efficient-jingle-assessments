@@ -1,0 +1,766 @@
+---
+title: "PMDD Block Builder: Converting Excel into QSF Files"
+output: html_document
+params:
+  excel_path: "scales.xlsx"      # path to your workbook
+  seed: 1234                     # for reproducibility
+  block_names: ["A","B","C"]     # change if you ever want 2 or 4 blocks
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+# A) How to use this template to convert your questionaire into a PMDD Qualtrics Survey
+
+1.  Prepare your questionnaire Excel files as described in Section B.
+2.  Run Section C in your R Markdown to load all required functions.
+3.  Convert your Excel questionnaires (Section D) into PMDD-style
+    blocks:
+    -   choose how many items per factor should go into the X-block
+
+    -   choose into how many forms (usually 3) the remaining items will
+        be split
+
+    -   the script automatically generates sub-blocks per scale (e.g. A
+        BFI, X HEXACO, etc.)
+4.  Import the generated TXT file into Qualtrics (Section E)
+5.  Build the Survey Flow manually in Qualtrics following the
+    instructions in Section F.
+6.  Add demographic items to the X Block
+
+# B) Required files in the working folder
+
+### B1) scales.xlsx
+
+This file contain the actual questionnaire items for all scales.
+
+-   Filename must be exactly: scales.xlsx
+
+-   One sheet per scale: The sheet name will become the scale identifier
+    (e.g. BFI, PANAS, TIPI).
+
+-   Required columns (case-insensitive)
+
+    -   `factor` — the factor or subscale name/code\
+    -   `item` — the item text to show in Qualtrics\
+    -   `scale_level` — the name of the Likert scale you want to use
+        (must match file B2)
+
+-   **Optional columns** (kept and carried through automatically):
+
+    -   `item_id` (unique within each sheet)\
+    -   `reverse_keyed`\
+    -   any other metadata columns you may want to include (for example:
+        `language`, `block`, `order`, etc.)
+
+**Example (sheet “BFI” inside scales.xlsx)**
+
+| factor | item                                  | item_id | scale_level |
+|:-------|:--------------------------------------|:--------|:------------|
+| E      | Is talkative.                         | E1      | likert5     |
+| E      | Is reserved.                          | E2R     | likert5     |
+| A      | Tends to find fault with others.      | A1      | likert5     |
+| A      | Is helpful and unselfish with others. | A2      | likert5     |
+| …      | …                                     | …       | …           |
+
+------------------------------------------------------------------------
+
+### B2) scale_levels.xlsx
+
+This file defines the response options for each Likert scale used in
+scales.xlsx
+
+-   Filename must be exactly scale_levels.xlsx
+
+<!-- -->
+
+-   **Required columns:**
+
+    -   `scale_level` — the name used in scales.xlsx has to match the
+        one used in scale_levels.xlsx (e.g. likert5)\
+    -   `value` — the numeric value saved in Qualtrics\
+    -   `label` — text shown to participants
+
+**Example (file “scale_levels.xlsx”)**
+
+| scale_level | value | label                      |
+|:------------|:------|:---------------------------|
+| likert5     | 1     | Strongly disagree          |
+| likert5     | 2     | Disagree                   |
+| likert5     | 3     | Neither agree nor disagree |
+| likert5     | 4     | Agree                      |
+| likert5     | 5     | Strongly agree             |
+| likert7     | 1     | Never                      |
+| likert7     | 2     | Rarely                     |
+| likert7     | 3     | Sometimes                  |
+| ...         | ...   | ...                        |
+
+------------------------------------------------------------------------
+
+# C) Preparing the conversion-functions
+
+##C1) Packages
+
+```{r setup, message=FALSE, warning=FALSE}
+# install.packages("readxl")
+library(readxl)
+
+# install.packages("dplyr")
+library(dplyr)
+
+# install.packages("tidyr")
+library(tidyr)
+
+# install.packages("purrr")
+library(purrr)
+
+# install.packages("stringr")
+library(stringr)
+
+# install.packages("readr")
+library(readr)
+
+# install.packages("rlang")
+library(rlang)
+
+# install.packages("janitor")
+library(janitor)
+
+
+set.seed(params$seed)
+
+excel_path  <- params$excel_path
+block_names <- params$block_names
+stopifnot(length(block_names) >= 2)
+```
+
+##C2) Function Identifying Scales
+
+```{r}
+## function identifying scales from excel sheet and creating data sets per sheet
+
+datascales <- function(path){
+  sheets <- readxl::excel_sheets(path)
+  
+  for (sheet in sheets) {
+    df <- readxl::read_xlsx(path, sheet = sheet)
+  
+  assign(sheet, df, envir = .GlobalEnv)
+  
+  message("Created dataset: ", sheet)
+  }
+  scale_names <- tibble::tibble(scale_name = sheets)
+  assign("scale_names", scale_names, envir = .GlobalEnv)
+  
+  message("Created 'scale_names' data frame.")
+  
+}
+
+```
+
+##C3) Function creating X Block
+
+```{r}
+## function creating X-block
+
+create_xblock <- function(n) {
+  # Validate n
+  if (missing(n) || !is.numeric(n) || length(n) != 1 || n <= 0) {
+    abort("`n` must be a single positive number (e.g., n = 2).")
+  }
+  
+  # Check for scale_names data frame
+  if (!exists("scale_names", envir = .GlobalEnv)) {
+    abort("`scale_names` not found in the environment. Run `datascales()` first.")
+  }
+  
+  scales_tbl <- get("scale_names", envir = .GlobalEnv)
+  
+  if (!"scale_name" %in% names(scales_tbl)) {
+    abort("`scale_names` must have a column `scale_name` with sheet names.")
+  }
+  
+  # Iterate over scales
+  xblock <- purrr::map_dfr(scales_tbl$scale_name, function(sc) {
+    if (!exists(sc, envir = .GlobalEnv)) {
+      abort(paste0("Dataset '", sc, "' not found in the environment."))
+    }
+    
+    df <- get(sc, envir = .GlobalEnv)
+    
+    # Basic column presence check
+    required <- c("factor", "item")
+    missing <- setdiff(required, names(df))
+    if (length(missing) > 0) {
+      abort(paste0("Dataset '", sc, "' is missing required columns: ",
+                   paste(missing, collapse = ", ")))
+    }
+    
+    # Select first n items per factor
+    df %>%
+      mutate(.row_order__ = dplyr::row_number()) %>%
+      group_by(factor) %>%
+      arrange(.row_order__, .by_group = TRUE) %>%
+      slice_head(n = n) %>%
+      ungroup() %>%
+      select(-.row_order__) %>%
+      mutate(scale = sc, .before = 1)
+  })
+  
+  # Assign result to global environment
+  assign("xblock", xblock, envir = .GlobalEnv)
+  message("✅ Created `xblock` with ", nrow(xblock), " rows from ",
+          length(unique(xblock$scale)), " scales.")
+  
+  invisible(xblock)
+}
+
+```
+
+##C4) Function creating ABC Blocks
+
+```{r}
+## function creating ABC blocks
+
+# --- Helper 1: Excel-like sequence: a, b, ..., z, aa, ab, ...
+.make_block_keys <- function(n) {
+  stopifnot(n >= 1)
+  keys <- character(0)
+  i <- 0
+  while (length(keys) < n) {
+    i <- i + 1
+    # convert i to base-26 letters (1-indexed)
+    x <- i
+    s <- character(0)
+    while (x > 0) {
+      rem <- (x - 1) %% 26
+      s <- c(letters[rem + 1], s)
+      x <- (x - rem - 1) %/% 26
+    }
+    keys <- c(keys, paste0(s, collapse = ""))
+  }
+  keys[seq_len(n)]
+}
+
+# --- Helper 2: assign items of a tibble to blocks in round-robin (1..n, repeating)
+# replace the helper with this version
+.assign_round_robin <- function(df, n) {
+  if (nrow(df) == 0) return(df %>% dplyr::mutate(.block_index = integer()))
+  df %>%
+    dplyr::mutate(.block_index = ((dplyr::row_number() - 1) %% n) + 1)
+}
+
+
+# --- Main: create_blocks -------------------------------------------------------
+# x = number of items already taken for xblock (per factor)
+# n = number of blocks to create (a, b, c, ...)
+create_blocks <- function(x, n) {
+  # validate
+  if (missing(x) || !is.numeric(x) || length(x) != 1 || x < 0) {
+    abort("`x` must be a single non-negative number.")
+  }
+  if (missing(n) || !is.numeric(n) || length(n) != 1 || n < 1) {
+    abort("`n` must be a single positive number of blocks.")
+  }
+  x <- as.integer(x); n <- as.integer(n)
+
+  # need scale_names
+  if (!exists("scale_names", envir = .GlobalEnv)) {
+    abort("`scale_names` not found. Run `datascales()` first.")
+  }
+  scales_tbl <- get("scale_names", envir = .GlobalEnv)
+
+  # block names
+  block_keys  <- .make_block_keys(n)
+  block_names <- paste0(block_keys, "block")
+
+  # init empty blocks
+  blocks <- setNames(rep(list(tibble()), n), block_names)
+
+  # per scale
+  for (sc in scales_tbl$scale_name) {
+    if (!exists(sc, envir = .GlobalEnv)) {
+      abort(paste0("Dataset '", sc, "' not found in the environment."))
+    }
+    df <- get(sc, envir = .GlobalEnv)
+
+    # required cols
+    if (!all(c("factor","item") %in% names(df))) {
+      abort(paste0("Dataset '", sc, "' must contain columns: factor, item."))
+    }
+
+    # keep original order
+    df <- df %>% mutate(.row_order__ = row_number())
+
+    # drop first x per factor; keep remaining
+    df_alloc <- df %>%
+      group_by(factor) %>%
+      arrange(.row_order__, .by_group = TRUE) %>%
+      mutate(.row_in_factor = row_number()) %>%
+      filter(.row_in_factor > x) %>%
+      select(-.row_in_factor) %>%
+      ungroup()
+
+    if (nrow(df_alloc) == 0) next
+
+    # round-robin assign 1..n
+    df_alloc <- .assign_round_robin(df_alloc, n)
+
+    # append to each block by POSITION (1..n), not by split names
+    for (i in seq_len(n)) {
+      part <- df_alloc %>%
+        filter(.block_index == i) %>%
+        select(-.block_index) %>%
+        arrange(.row_order__) %>%
+        select(-.row_order__) %>%
+        mutate(scale = sc, .before = 1)
+
+      if (nrow(part) > 0) {
+        blocks[[ block_names[i] ]] <- bind_rows(blocks[[ block_names[i] ]], part)
+      }
+    }
+  }
+  # assign to environment and return
+  walk2(names(blocks), blocks, ~ assign(.x, .y, envir = .GlobalEnv))
+  message("Created blocks: ", paste(names(blocks), collapse = ", "))
+  invisible(blocks)
+}
+
+```
+
+##C5) Function loading and validating scale_levels Excel
+
+```{r}
+# function reading and validating scale levels
+
+read_scale_levels_file <- function(path) {
+  sl <- readxl::read_xlsx(path) %>%
+    mutate(
+      scale_level = as.character(scale_level),
+      value       = suppressWarnings(as.integer(value)),
+      label       = as.character(label)
+    ) %>%
+    arrange(scale_level, value)
+  
+  # Required columns check
+  required <- c("scale_level", "value", "label")
+  missing  <- setdiff(required, names(sl))
+  if (length(missing) > 0) {
+    abort(paste0("Scale levels file is missing columns: ",
+                 paste(missing, collapse = ", ")))
+  }
+  
+  # Sanity checks
+  if (any(is.na(sl$scale_level) | sl$scale_level == "")) {
+    abort("Scale levels file has empty 'scale_level' entries.")
+  }
+  if (any(is.na(sl$value))) {
+    abort("Scale levels file has missing or non-integer 'value' entries.")
+  }
+  if (any(is.na(sl$label) | sl$label == "")) {
+    abort("Scale levels file has empty 'label' entries.")
+  }
+  
+  # Split into named list: likert5, likert7, ...
+  scale_levels <- split(sl, sl$scale_level) %>%
+    map(~ select(.x, value, label) %>% arrange(value))
+  
+  # Store globally
+  assign("scale_levels", scale_levels, envir = .GlobalEnv)
+  message("✅ Created object 'scale_levels' with ",
+          length(scale_levels), " scale definitions.")
+  
+  invisible(scale_levels)
+}
+
+```
+
+##C6) Function creating TXT-Survey
+
+```{r}
+# Helper: setting up Questions as TXT
+.default_choices <- tibble::tibble(
+  value = 1:5,
+  label = c(
+    "Strongly disagree",
+    "Disagree",
+    "Neither agree nor disagree",
+    "Agree",
+    "Strongly agree"
+  )
+)
+
+get_choices_for_row <- function(row, scale_levels = NULL) {
+  if (!is.null(scale_levels) && "scale_level" %in% names(row)) {
+    lvl <- as.character(row$scale_level[[1]])
+    if (!is.na(lvl) && lvl %in% names(scale_levels)) {
+      return(scale_levels[[lvl]])
+    }
+  }
+  .default_choices
+}
+
+emit_question_txt <- function(row, scale_levels = NULL) {
+  stopifnot(nrow(row) == 1)
+  item_text <- as.character(row$item[[1]])
+  choices_tbl <- get_choices_for_row(row, scale_levels)
+
+  # Advanced-Format-Question
+  c(
+    "[[Question:MC]]",
+    item_text,
+    "[[Choices]]",
+    choices_tbl$label,
+    ""  # Leerzeile zum Trennen
+  )
+}
+
+# Helper: Setting up Blocks as TXT
+emit_block_txt <- function(block_df, block_title, scale_levels = NULL) {
+  if (nrow(block_df) == 0) return(character(0))
+
+  # Wir gehen in der gegebenen Reihenfolge durch die Items
+  rows <- split(block_df, seq_len(nrow(block_df)))
+
+  lines <- c(
+    sprintf("[[Block:%s]]", block_title),
+    ""
+  )
+
+  for (rw in rows) {
+    lines <- c(lines, emit_question_txt(rw, scale_levels))
+  }
+
+  lines
+}
+
+
+# Helper: Setting up Sub-Blocks
+emit_letter_subblocks_txt <- function(letter_df, letter, scale_levels = NULL) {
+  if (is.null(letter_df) || nrow(letter_df) == 0) return(character(0))
+  if (!"scale" %in% names(letter_df)) {
+    stop("letter_df muss eine Spalte 'scale' haben (kommt aus datascales()/create_blocks()).")
+  }
+
+  # Nach Skala splitten
+  split_list <- split(letter_df, letter_df$scale)
+
+  lines <- character(0)
+
+  for (sc_name in names(split_list)) {
+    df_sc <- split_list[[sc_name]]
+
+    # Blocktitel wählen – hier: "A BFI", "B HEXACO", "X BFI", ...
+    block_title <- sprintf("%s %s", toupper(letter), sc_name)
+
+    lines <- c(
+      lines,
+      emit_block_txt(df_sc, block_title, scale_levels),
+      ""  # optional Leerzeile zwischen Subblöcken
+    )
+  }
+
+  lines
+}
+
+
+# Setting up complete TXT Survey
+build_txt_survey <- function(
+  xblock,
+  ablock = NULL,
+  bblock = NULL,
+  cblock = NULL,
+  scale_levels = NULL,
+  file = "PMDD_import.txt"
+) {
+  lines <- c(
+    "[[AdvancedFormat]]",
+    ""
+  )
+
+  # X-Subblöcke: X BFI, X CFI, ...
+  if (!missing(xblock) && !is.null(xblock) && nrow(xblock) > 0) {
+    lines <- c(lines, emit_letter_subblocks_txt(xblock, "X", scale_levels))
+  }
+
+  # A-Subblöcke: A BFI, A CFI, ...
+  if (!is.null(ablock) && nrow(ablock) > 0) {
+    lines <- c(lines, emit_letter_subblocks_txt(ablock, "A", scale_levels))
+  }
+
+  # B-Subblöcke: B BFI, B CFI, ...
+  if (!is.null(bblock) && nrow(bblock) > 0) {
+    lines <- c(lines, emit_letter_subblocks_txt(bblock, "B", scale_levels))
+  }
+
+  # C-Subblöcke: C BFI, C CFI, ...
+  if (!is.null(cblock) && nrow(cblock) > 0) {
+    lines <- c(lines, emit_letter_subblocks_txt(cblock, "C", scale_levels))
+  }
+
+  writeLines(lines, file, useBytes = TRUE)
+  message("✅ TXT für Qualtrics geschrieben: ", normalizePath(file))
+  invisible(file)
+}
+
+
+```
+
+# D) Convert your Excel-Files into PMDD TXT-Files
+
+```{r}
+# ------------------------------------------------------------
+# 1) Scales
+# ------------------------------------------------------------
+
+# Load your questionnaire sheets from "scales.xlsx".
+datascales("scales.xlsx")
+
+# create_xblock(n = ...)
+# → n = number of items per *factor* that should go into the X-Block.
+#   Usually: n = 1  (recommended: one anchor item per factor)
+create_xblock(n = 1)
+
+# create_blocks(x = ..., n = ...)
+# → x = same number as above (items already taken into the X-Block)
+# → n = number of forms you want to compare (e.g., 3 = A/B/C groups)
+#
+#   Typical PMDD: x = 1, n = 3
+create_blocks(x = 1, n = 3)
+
+
+# ------------------------------------------------------------
+# 2) Scale Levels
+# ------------------------------------------------------------
+
+# Load your Likert scale definitions.
+# Must match the "scale_level" column inside scales.xlsx.
+read_scale_levels_file("scale_levels.xlsx")
+
+
+# ------------------------------------------------------------
+# 3) Generate TXT Survey
+# ------------------------------------------------------------
+
+# This creates the final TXT file that you import into Qualtrics.
+#
+# Arguments:
+#   xblock = the X-Block created above
+#   ablock, bblock, cblock = the randomized A/B/C blocks
+#   file = name of the TXT survey file to be created
+#
+build_txt_survey(
+  xblock       = xblock,
+  ablock       = ablock,
+  bblock       = bblock,
+  cblock       = cblock,
+  scale_levels = scale_levels,
+  file         = "PMDD_Jingle_Fallacy_Study.txt"
+)
+
+
+```
+
+# E) Import Your TXT-File into Qualtrics
+
+**Option 1) Create a new project from your TXT file**
+
+1.  Log in to Qualtrics
+
+2.  Go to the Projects dashboard.
+
+3.  Click Create Project (upper right).
+
+4.  Choose Survey -\> Get Started
+
+5.  Scroll down to Import a survey
+
+6.  Select Upload a TXT File
+
+7.  Upload: PMDD_Jingle_Fallacy_Study.txt
+
+Qualtrics will now automatically create all blocks
+
+No Survey Flow is created yet — this is expected.
+
+**Option 2) Import into an existing project**
+
+Use this option if you want to import the items into a project you
+already created.
+
+1.  Open your existing project in Qualtrics.
+
+2.  Go to the Survey Tab.
+
+3.  In the top menu, click Tools.
+
+4.  Choose Import Survey.
+
+5.  Upload: PMDD_Jingle_Fallacy_Study.txt
+
+6.  Confirm the import.
+
+Note: If the project already contains questions or blocks, the imported
+blocks will simply be added below the existing ones.
+
+# F) Create the PMDD Survey Flow inside Qualtrics
+
+After importing your TXT file, your Qualtrics project contains all
+blocks but no Survey Flow yet.
+
+Now we will build the PMDD Flow manually following these steps.
+
+Below a visual overview of the final structure you will build:
+
+### F1) PMDD Survey Flow Overview (Diagram)
+
+``` text
+Start
+│
+├── Group X
+│     ├── Embedded Data: Form = X
+│     └── Randomizer (show all, random order)
+│           ├── X – BFI
+│           ├── X – HEXACO
+│           └── X – … (one per scale)
+│
+└── Randomizer (show 1 of 3 forms: A, B, C)
+      │
+      ├── Group A
+      │     ├── Embedded Data: Form = A
+      │     └── Randomizer (show all, random order)
+      │           ├── A – BFI
+      │           ├── A – HEXACO
+      │           └── A – … (one per scale)
+      │
+      ├── Group B
+      │     ├── Embedded Data: Form = B
+      │     └── Randomizer (show all, random order)
+      │           ├── B – BFI
+      │           ├── B – HEXACO
+      │           └── B – … 
+      │
+      └── Group C
+            ├── Embedded Data: Form = C
+            └── Randomizer (show all, random order)
+                  ├── C – BFI
+                  ├── C – HEXACO
+                  └── C – …
+```
+
+### F2) How to Build This Flow in Qualtrics (Step-by-Step)\*\*
+
+**Step 1 — Open Survey Flow**
+
+1.  Open your project
+
+2.  Go to Survey → Survey Flow
+
+3.  Delete anything already there (if present)
+
+------------------------------------------------------------------------
+
+**Step 2 — Add Group X**
+
+1.  Click Add Below → Add a Group
+
+2.  Rename group: Group X
+
+3.  Inside Group X add:
+
+-   Add a New Element → Embedded Data
+
+-   Create field: `Form`
+
+-   Set value: `X`
+
+-   Add a New Element → Randomizer
+
+**Configure the randomizer:**
+
+-   Randomization Type: Show all elements
+
+-   Randomize order: ✔ enabled
+
+**Add all X-subblocks:**
+
+Inside the randomizer, click Add Element and add each of these:
+
+-   `X – BFI`
+
+-   `X – HEXACO`
+
+-   `X – …` (one per scale)
+
+------------------------------------------------------------------------
+
+**Step 3 — Add the outer randomizer for Forms A/B/C**
+
+1.  Below Group X, click Add Below → Randomizer
+
+2.  Set:
+
+-   Randomization Type: Show 1 element
+
+-   Evenly Present Elements: enabled
+
+This ensures equal assignment to A, B, or C across participants.
+
+------------------------------------------------------------------------
+
+**Step 4 — Create each Form Group (A, B, C)**
+
+You will repeat the following steps three times
+
+Group A, Group B, and Group C
+
+For each group:
+
+1.  Inside the big randomizer, click Add Element → Group
+
+2.  Rename to:\
+    Group A (or B or C)
+
+3.  Inside that group:\
+
+    a)  Add Embedded Data
+
+    -   Field: Form
+    -   Value:`A` (or B or C)
+
+    b)  Add a Randomizer
+
+    -   Randomization Type: Show all elements
+    -   Randomize Order: enabled
+
+    c)  Add all subblocks for that form (e.g. for A):
+
+    -   `A – BFI`
+    -   `A – HEXACO`
+    -   `A – …`\
+        (one block per scale)
+
+Repeat forGroup B and Group C.
+
+------------------------------------------------------------------------
+
+### F3) Checklist: Your Final Flow Should Look Like This
+
+✔ One Group X at the top ✔ Inside it:
+
+-   Embedded `Form = X`
+
+-   Randomizer (show all, random order)
+
+-   Subblocks: X–BFI, X–HEXACO, X–…
+
+✔ Then one Randomizer (show 1 of 3, even presentation) ✔ Three groups:
+A, B, C ✔ Each group contains:
+
+-   Embedded `Form = A/B/C`
+
+-   Randomizer (show all, random order)
+
+-   All subblocks for that form
+
+------------------------------------------------------------------------

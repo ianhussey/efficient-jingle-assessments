@@ -1,0 +1,2083 @@
+[[AdvancedFormat]]
+
+[[Block:X BFAS]]
+
+[[Question:MC]]
+Ich interessiere mich nicht für die Probleme anderer.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich führe meine Vorhaben durch.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Es fällt mir leicht, neue Freundschaften zu schließen.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich bin selten deprimiert.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich habe eine gute Auffassungsgabe.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+
+[[Block:X BFI]]
+
+[[Question:MC]]
+ Neige dazu andere zu kritisieren
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Erledige Aufgaben gründlich
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Bin gesprächig - unterhalte mich gern
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Werde leicht deprimiert - niedergeschlagen
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Bin originell - entwickle neue Ideen
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+
+[[Block:X HEXACO]]
+
+[[Question:MC]]
+ Ich habe selten Wut im Bauch - nicht mal gegen Leute - die mich sehr ungerecht behandelt haben.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Ich plane im Voraus und organisiere - damit in letzter Minute kein Gedrängel aufkommt.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Im Allgemeinen bin ich mit mir ziemlich zufrieden.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Ich hätte Angst - wenn ich bei schlechten Wetterbedingungen verreisen müsste.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Ich würde keine Schmeicheleien benutzen - um eine Gehaltserhöhung zu bekommen oder befördert zu werden - auch wenn ich wüsste - dass es erfolgreich wäre.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Der Besuch einer Kunstausstellung würde mich ziemlich langweilen.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+
+[[Block:A BFAS]]
+
+[[Question:MC]]
+Ich respektiere Autoritäten.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich erkundige mich nach dem Wohlbefinden anderer.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich nutze andere aus.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich stehe den Gefühlen anderer gleichgültig gegenüber.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Manchmal beleidige ich andere Leute.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Mir fehlt eine weiche Seite.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich schaue auf meinen persönlichen Vorteil.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich mag Ordnung.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Manche Dinge vermassele ich einfach.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Es stört mich nicht, wenn andere Menschen unordentlich sind.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich erledige meine Aufgaben rasch.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Routine mag ich nicht.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich lasse mich leicht ablenken.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Mich näher kennenzulernen fällt schwer.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich bin nicht gut darin, andere zu beeinflussen.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich lerne schnell neue Leute kennen.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich bin gut darin, Führung zu übernehmen.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Wenn ich glücklich bin, dann zeige ich das auch.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich übernehme häufig die Initiative.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich werde schnell ärgerlich.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich bin mit mir zufrieden.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich kann meine Gefühle gut kontrollieren.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich mache mir häufig Sorgen.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Meine Stimmung verändert sich leicht.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Manchmal ist mir alles zu viel.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich bin schnell gerührt.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Kunst ist sehr wichtig für mich.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Es bereitet mir Freude, komplexe Probleme zu lösen.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Poesie beeindruckt mich wenig oder gar nicht.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich habe einen reichen Wortschatz.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Es passiert selten, dass ich meinen Gedanken nachhänge.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich kann meine Gedanken klar formulieren.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+
+[[Block:A BFI]]
+
+[[Question:MC]]
+ Bin voller Energie und Tatendrang
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Bin durchsetzungsfähig - energisch
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Bin hilfsbereit und selbstlos gegenüber anderen
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Schenke anderen leicht Vertrauen - glaube an das Gute im Menschen
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Kann mich schroff und abweisend anderen gegenüber verhalten
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Bin manchmal unsorgfältig und schluderig
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Bin bequem - neige zur Faulheit
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Mache Pläne und führe sie auch durch
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Bin entspannt - lasse mich durch Stress nicht aus der Ruhe bringen
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Bin emotional ausgeglichen - nicht leicht aus der Fassung zu bringen
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Werde leicht nervös und unsicher
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Habe eine aktive Vorstellungskraft - bin phantasievoll
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Mag es - wenn aufgaben routinemässig zu erledigen sind
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Kenne mich gut in Musik - Kunst oder Literatur aus
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+
+[[Block:A HEXACO]]
+
+[[Question:MC]]
+ Andere sagen mir manchmal - dass ich zu dickköpfig bin.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Andere sagen mir manchmal - dass ich zu kritisch gegenüber anderen bin.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Ich bin gewöhnlich ziemlich flexibel in meinen Ansichten - wenn andere Leute mir nicht zustimmen.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Wenn ich an irgendetwas arbeite - beachte ich kleine Details nicht allzu sehr.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Ich treibe mich oft selbst sehr stark an - wenn ich versuche - ein Ziel zu erreichen.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Ich versuche immer - fehlerfrei zu arbeiten - auch wenn es Zeit kostet.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Wenn ich wegen einer schmerzvollen Erfahrung leide - brauche ich jemanden - der mich tröstet.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Ich kann manchmal nichts dagegen machen - dass ich mir über kleine Dinge Sorgen mache.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Ich kann mit schwierigen Situationen umgehen - ohne dass ich emotionale Unterstützung von irgendjemandem brauche.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Ich ziehe Berufe - in denen man sich aktiv mit anderen Menschen auseinandersetzt solchen vor - in denen man alleine arbeitet. 
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Bei Gruppentreffen sage ich nur selten meine Meinung.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Das erste - was ich an einem neuen Ort tue - ist - Freundschaften zu schließen.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Viel Geld zu haben ist nicht besonders wichtig für mich.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Wenn ich wüsste - dass ich niemals erwischt werde - wäre ich bereit - eine Million zu stehlen.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Es würde mir viel Freude bereiten - teure Luxusgüter zu besitzen.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Ich würde es genießen - ein Kunstwerk zu schaffen - etwa einen Roman - ein Lied oder ein Gemälde.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Ich bin daran interessiert - etwas über die Geschichte und Politik anderer Länder zu lernen.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Man hat mir schon oft gesagt - dass ich eine gute Vorstellungskraft habe.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+
+[[Block:B BFAS]]
+
+[[Question:MC]]
+Ich habe ein Gespür für die Gefühle anderer.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Es ist mir unangenehm, aufdringlich zu erscheinen.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich kann die Gefühle anderer nachempfinden.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich setze andere nur selten unter Druck.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich interessiere mich für das Leben anderer.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich mag Diskussionen und Auseinandersetzungen.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich lasse meine Sachen herumliegen.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Es fällt mir schwer, mich an die Arbeit zu machen.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich halte mich an Zeitpläne.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Manchmal bin ich mit meinen Gedanken nicht bei der Sache.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Unordnung stört mich nicht.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich schiebe Entscheidungen auf.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich lege großen Wert auf Details.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich habe eine starke Persönlichkeit.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich gebe wenig über mich preis.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich überlasse es anderen, den Weg zu weisen.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich bin keine besonders enthusiastische Person.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich halte mich mit meiner Meinung eher zurück.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich lache viel.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich bin häufig beunruhigt.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich gerate leicht aus der Fassung.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Es kommt selten vor, dass ich mich niedergeschlagen fühle.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Es kommt selten vor, dass ich die Fassung verliere.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Mir ist selten etwas peinlich.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich bin schnell aufgewühlt.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Es bereitet mir Freude, die Schönheit der Natur zu genießen.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich kann mit einer großen Menge an Informationen umgehen.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich gehe manchmal völlig in einer Musik auf, die ich höre.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich vermeide schwierigen Lesestoff.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich muss mich kreativ betätigen.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich brauche manchmal länger, um etwas Neues zu lernen.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+In manchen Dingen sehe ich etwas Schönes, das anderen verborgen bleibt.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+
+[[Block:B BFI]]
+
+[[Question:MC]]
+ Bin begeisterungsfähig und kann andere leicht mitreissen
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Bin manchmal schüchtern und gehemmt
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Bin häufig in Streitereien verwickelt
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Kann mich kalt und distanziert verhalten
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Verhalte mich kooperativ - ziehe Zusammenarbeit dem Wettbewerb vor
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Arbeite zuverlässig und gewissenhaft
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Harre aus (und arbeite weiter) - bis die Aufgabe fertig ist
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Bin leicht ablenkbar - bleibe nicht bei der Sache
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Reagiere leicht angespannt
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Kann launisch sein - habe schwankende Stimmungen
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Bin vielseitig interessiert
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Bin erfinderisch und einfallsreich
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Stelle gerne Überlgegungen an - spiele mit abstrakten Ideen
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+
+[[Block:B HEXACO]]
+
+[[Question:MC]]
+ Ich neige dazu - nachsichtig zu sein - wenn ich andere beurteile.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Andere halten mich für jähzornig.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Die meisten Leute werden schneller ärgerlich als ich.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Ich arbeite nur so viel wie nötig - um gerade so durchzukommen.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Ich treffe Entscheidungen eher aus dem Bauch heraus als durch sorgfältiges Nachdenken.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Ich mache viele Fehler - weil ich nicht nachdenke - bevor ich handele.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Ich mache mir viel weniger Sorgen als die meisten Leute.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Ich könnte weinen - wenn ich andere Personen sehe - die weinen.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Ich fühle starke Emotionen - wenn jemand - der mir nahe steht - für eine längere Zeit weggeht.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ In sozialen Situationen bin ich gewöhnlich der - der den ersten Schritt macht.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ An den meisten Tagen bin ich fröhlich und optimistisch.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Die meisten Leute sind aufgedrehter und dynamischer als ich es im Allgemeinen bin.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Ich würde niemals Bestechungsgeld annehmen - auch wenn es sehr viel wäre.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Ich denke - dass ich mehr Respekt verdiene als ein durchschnittlicher Mensch.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Ich will - dass alle wissen - dass ich eine wichtige angesehene Person bin.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Ich habe es noch nie wirklich gemocht - eine Enzyklopädie durchzublättern.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Ich denke - dass es Zeitverschwendung ist - radikalen Ideen Aufmerksamkeit zu schenken.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Ich mag Leute - die unkonventionelle Ideen haben.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+
+[[Block:C BFAS]]
+
+[[Question:MC]]
+Ich fühle mich anderen überlegen.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Die Belange anderer Menschen interessieren mich nicht.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich vermeide es, anderen meinen Willen aufzuzwingen.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich nehme mir keine Zeit für andere.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich suche Streit.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Es bereitet mir Freude, etwas für andere zu tun.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich verschwende meine Zeit.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich räume meine Sachen stets auf.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Was ich beginne, bringe ich auch zu Ende.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich wünsche mir, dass alles perfekt ist.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich weiß immer, was ich tue.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich achte darauf, dass Regeln eingehalten werden.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich übernehme Verantwortung.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich halte andere auf Distanz.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich kann andere faszinieren.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich lasse mich nicht durch den Trubel der Ereignisse mitreißen.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich kann andere dazu bringen, Dinge zu tun, die ich will.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich habe viel Spaß.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich bin nicht durchsetzungsfähig.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich bin selten irritiert.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich fühle mich schnell bedroht.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Meine Stimmung ändert sich häufig.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich lasse mich schnell entmutigen.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich bin nicht schnell verärgert.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich sorge mich über viele Dinge.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich habe Schwierigkeiten, abstrakte Ideen zu verstehen.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Es bereitet mir Freude, über die Dinge nachzudenken.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich vermeide philosophische Diskussionen.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Gemälde oder Fotografien berühren mich nicht.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Ich habe eine schnelle Auffassungsgabe.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+[[Question:MC]]
+Es kommt selten vor, dass ich Tagträumen nachgehe.
+[[Choices]]
+trifft überhaupt nicht zu
+trifft oft nicht zu
+trifft eher nicht zu
+teils/teils
+trifft eher zu
+trifft oft zu
+trifft vollständig zu
+
+
+[[Block:C BFI]]
+
+[[Question:MC]]
+ Bin eher zurückhaltend - reserviert
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Bin eher der "stille Typ" - wortkarg
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Gehe aus mir heraus - bin gesellig
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Bin nicht nachtragend - vergebe anderen schnell
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Bin rücksichtsvoll zu anderen - einfühlsam
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Habe of Krach mit anderen
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Bin eher unorderntlich
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Bin tüchtig und arbeite flott
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Mache mir viele Sorgen
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Bleibe ruhig - selbst in Stresssituationen
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Bin tiefsinnig - denke gerne über Sachen nach
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Schätze künstlerische und ästhetische Eindrücke
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+[[Question:MC]]
+ Habe nur wenig künstlerisches Interesse
+[[Choices]]
+sehr unzutreffend
+eher unzutreffend
+weder noch
+eher zutreffend
+sehr zutreffend
+
+
+[[Block:C HEXACO]]
+
+[[Question:MC]]
+ Selbst wenn Leute viele Fehler machen - sage ich nur selten etwas Negatives.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Meine Einstellung gegenüber Personen - die mich schlecht behandelt haben - ist vergeben und vergessen.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Wenn mir andere sagen - dass ich falsch liege - ist meine erste Reaktion - mit ihnen zu streiten.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Andere nennen mich oft einen Perfektionisten.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Wenn ich arbeite - habe ich manchmal Schwierigkeiten - weil ich desorganisiert bin.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Ich ziehe es vor - das zu tun - was mir gerade in den Sinn kommt - anstatt an einem Plan festzuhalten.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Selbst in einem Notfall würde ich nicht in Panik geraten.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Wenn es um körperliche Gefahren geht - bin ich sehr ängstlich.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Ich bleibe emotionslos - selbst in Situationen - in denen die meisten Leute sehr sentimental werden.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Manchmal habe ich den Eindruck - dass ich wertlos bin.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Ich bin der Meinung - dass ich nicht beliebt bin.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Wenn ich in einer Gruppe von Leuten bin - bin ich oft derjenige - der im Namen der Gruppe spricht.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Ich würde nicht vortäuschen - jemanden zu mögen - nur um diese Person dazu zu bringen - mir Gefälligkeiten zu erweisen.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Wenn ich von jemandem etwas will - lache ich auch noch über dessen schlechteste Witze.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Ich würde in die Versuchung geraten - Falschgeld zu benutzen - wenn ich sicher sein könnte - damit durchzukommen.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Ich halte mich nicht für einen künstlerischen oder kreativen Menschen.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Wenn ich die Gelegenheit dazu hätte - würde ich gerne ein Konzert mit klassischer Musik besuchen.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+[[Question:MC]]
+ Ich finde es langweilig - über Philosophie zu diskutieren.
+[[Choices]]
+starke Ablehnung
+Ablehnung
+neutral
+Zustimmung
+starke Zustimmung
+
+
